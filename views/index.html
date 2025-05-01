@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joaquín y Míriam - Nos casamos</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="photo-container"></div>
+
+    <div class="content">
+        <section class="announcement">
+            <h1>Nos casamos</h1>
+            <p class="invitation-text">
+                Junto con nuestras familias García Martínez y Gimeno Castells, 
+                nos gustaría invitaros a nuestro enlace matrimonial que se celebrará 
+                el día 13 de Septiembre de 2025 en la Iglesia de Sant Corneli (Collbató). 
+                Después lo celebraremos en el restaurante Els 4 Vents (Rubí).
+            </p>
+        </section>
+
+        <section class="countdown">
+            <div id="countdown-timer">
+                <div><span id="days"></span>Días</div>
+                <div><span id="hours"></span>Horas</div>
+                <div><span id="minutes"></span>Minutos</div>
+                <div><span id="seconds"></span>Segundos</div>
+            </div>
+        </section>
+
+        <section class="rsvp">
+            <a href="#" id="rsvp-link">Confirma tu asistencia</a>
+        </section>
+    </div>
+
+    <!-- Nueva sección Iglesia -->
+    <section class="location-section church">
+        <div class="location-image"></div>
+        <div class="location-info">
+            <h2>NOS CASAMOS AQUÍ</h2>
+            <p>A LAS 12:00</p>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=iglesia+sant+corneli+collbató&output=embed" 
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva sección Restaurante -->
+    <section class="location-section restaurant">
+        <div class="location-image"></div>
+        <div class="location-info">
+            <h2>LUEGO LO CELEBRAREMOS AQUÍ</h2>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=els+4+vents+rubí&output=embed" 
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
