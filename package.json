@@ -1,20 +1,30 @@
 {
   "name": "bodamiriamyjoaquin",
   "version": "1.0.0",
-  "description": "Sitio web para nuestra boda - 13 Septiembre 2025",
+  "description": "Página web para la boda de Joaquín y Míriam - 13 Septiembre 2025",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "dotenv": "^16.3.1",
-    "express": "^4.21.2"
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "boda",
+    "wedding",
+    "express",
+    "website"
+  ],
+  "author": "Joaquín García Martínez",
+  "license": "MIT"
 }
