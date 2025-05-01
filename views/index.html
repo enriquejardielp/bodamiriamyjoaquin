@@ -9,53 +9,61 @@
 </head>
 <body>
     <div id="photo-container"></div>
+    <div class="overlay"></div>
 
     <div class="content">
         <section class="announcement">
-            <h1>Nos casamos</h1>
-            <p class="invitation-text">
-                Junto con nuestras familias García Martínez y Gimeno Castells, 
-                nos gustaría invitaros a nuestro enlace matrimonial que se celebrará 
-                el día 13 de Septiembre de 2025 en la Iglesia de Sant Corneli (Collbató). 
-                Después lo celebraremos en el restaurante Els 4 Vents (Rubí).
-            </p>
+            <div class="centered-content">
+                <h1>Nos casamos</h1>
+                <p class="invitation-text">
+                    Junto con nuestras familias García Martínez y Gimeno Castells, 
+                    nos gustaría invitaros a nuestro enlace matrimonial que se celebrará 
+                    el día 13 de Septiembre de 2025 en la Iglesia de Sant Corneli (Collbató). 
+                    Después lo celebraremos en el restaurante Els 4 Vents (Rubí).
+                </p>
+            </div>
         </section>
 
         <section class="countdown">
-            <div id="countdown-timer">
-                <div><span id="days"></span>Días</div>
-                <div><span id="hours"></span>Horas</div>
-                <div><span id="minutes"></span>Minutos</div>
-                <div><span id="seconds"></span>Segundos</div>
+            <div class="centered-content">
+                <div id="countdown-timer">
+                    <div><span id="days"></span>Días</div>
+                    <div><span id="hours"></span>Horas</div>
+                    <div><span id="minutes"></span>Minutos</div>
+                    <div><span id="seconds"></span>Segundos</div>
+                </div>
             </div>
         </section>
 
         <section class="rsvp">
-            <a href="#" id="rsvp-link">Confirma tu asistencia</a>
+            <div class="centered-content">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSds_QVPq23EyCUgDqnM9uClCnMNIhnCQ1nkqwu7QY1ouBjmTg/viewform?usp=sf_link" 
+                   id="rsvp-link" target="_blank">Confirma tu asistencia</a>
+            </div>
         </section>
     </div>
 
-    <!-- Nueva sección Iglesia -->
+    <!-- Sección Iglesia -->
     <section class="location-section church">
         <div class="location-image"></div>
         <div class="location-info">
             <h2>NOS CASAMOS AQUÍ</h2>
             <p>A LAS 12:00</p>
             <div class="map-container">
-                <iframe src="https://maps.google.com/maps?q=iglesia+sant+corneli+collbató&output=embed" 
-                        frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://maps.google.com/maps?q=iglesia+sant+corneli+collbató&output=embed&z=16" 
+                        frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Nueva sección Restaurante -->
+    <!-- Sección Restaurante -->
     <section class="location-section restaurant">
         <div class="location-image"></div>
         <div class="location-info">
             <h2>LUEGO LO CELEBRAREMOS AQUÍ</h2>
             <div class="map-container">
-                <iframe src="https://maps.google.com/maps?q=els+4+vents+rubí&output=embed" 
-                        frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://maps.google.com/maps?q=els+4+vents+rubí&output=embed&z=16" 
+                        frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
         </div>
     </section>

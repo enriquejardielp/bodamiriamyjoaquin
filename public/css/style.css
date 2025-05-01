@@ -1,26 +1,29 @@
-/* Estilos base */
 :root {
     --beige: #f5f0e6;
     --dark-beige: #e8dfc8;
     --gold: #c8a97e;
     --dark-gold: #8b6b4a;
-    --text-color: #333;
-    --white: #fff;
+    --text-light: #fff8e1;
+    --text-dark: #2c1e0f;
+    --overlay: rgba(40, 28, 12, 0.6);
 }
 
+/* Estilos base */
 body {
     font-family: 'Montserrat', sans-serif;
-    color: var(--text-color);
+    color: var(--text-light);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: var(--beige);
+}
+
+body.scrolled #photo-container {
+    filter: blur(4px) brightness(0.6);
 }
 
 h1, h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: var(--dark-gold);
 }
 
 /* Foto principal */
@@ -30,37 +33,58 @@ h1, h2 {
     left: 0;
     width: 100%;
     height: 100vh;
+    background-image: url('/img/fotoboda.JPEG');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    z-index: -2;
+    transition: filter 0.8s ease;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
     z-index: -1;
-    opacity: 0.8;
+    opacity: 0;
     transition: opacity 0.8s ease;
 }
 
-/* Contenido principal */
+body.scrolled .overlay {
+    opacity: 1;
+}
+
+/* Contenido centrado */
+.centered-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Sección principal */
 .content {
     min-height: 100vh;
-    padding: 20vh 5% 10%;
-    background-color: transparent;
-    position: relative;
-    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
 }
 
-.announcement, .countdown, .rsvp {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    margin-bottom: 50px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+.announcement h1 {
+    color: var(--text-light);
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.announcement.visible, .countdown.visible, .rsvp.visible {
-    opacity: 1;
-    transform: translateY(0);
+.invitation-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
 }
 
 /* Countdown */
@@ -68,14 +92,14 @@ h1, h2 {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 30px;
+    margin: 40px 0;
 }
 
 #countdown-timer div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 1rem;
+    min-width: 80px;
 }
 
 #countdown-timer span {
@@ -87,25 +111,22 @@ h1, h2 {
 /* Botón RSVP */
 #rsvp-link {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 15px 40px;
     background-color: var(--gold);
-    color: white;
+    color: var(--text-dark);
     text-decoration: none;
     border-radius: 30px;
-    font-weight: 400;
+    font-weight: 500;
     transition: all 0.3s ease;
-    border: 2px solid var(--gold);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-size: 1.1rem;
     margin-top: 20px;
 }
 
 #rsvp-link:hover {
-    background-color: transparent;
-    color: var(--gold);
-}
-
-#rsvp-link.clicked {
-    transform: scale(0.95);
-    background-color: var(--dark-gold);
+    background-color: #e0c9a0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
 /* Secciones de ubicación */
@@ -113,16 +134,9 @@ h1, h2 {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 5%;
+    padding: 8% 5%;
     background-color: var(--beige);
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.location-section.visible {
-    opacity: 1;
-    transform: translateY(0);
+    color: var(--text-dark);
 }
 
 .location-image {
@@ -132,6 +146,7 @@ h1, h2 {
     background-position: center;
     border-radius: 10px;
     margin-right: 5%;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
 }
 
 .location-info {
@@ -142,18 +157,16 @@ h1, h2 {
 .location-info h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-}
-
-.location-info p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    color: var(--dark-gold);
 }
 
 .map-container {
-    height: 300px;
+    height: 400px;
+    width: 100%;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    margin-top: 30px;
 }
 
 .map-container iframe {
@@ -162,14 +175,26 @@ h1, h2 {
     border: none;
 }
 
-/* Iglesia específica */
+/* Iglesia y restaurante */
 .church .location-image {
     background-image: url('/img/fotoiglesia.JPEG');
 }
 
-/* Restaurante específico */
 .restaurant .location-image {
     background-image: url('/img/fotorestaurante.JPEG');
+}
+
+/* Animaciones */
+.announcement, .countdown, .rsvp, .location-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.announcement.visible, .countdown.visible, .rsvp.visible, 
+.location-section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Responsive */
@@ -186,9 +211,8 @@ h1, h2 {
         min-height: 300px;
     }
     
-    .location-info {
-        width: 100%;
-        padding: 20px 0;
+    .announcement h1 {
+        font-size: 2.5rem;
     }
     
     #countdown-timer {
@@ -198,10 +222,14 @@ h1, h2 {
     #countdown-timer div {
         width: 45%;
         margin-bottom: 15px;
+        min-width: auto;
     }
-}
-
-/* Animación de carga */
-body.loaded #photo-container {
-    opacity: 0.8;
+    
+    .map-container {
+        height: 300px;
+    }
+    
+    .location-info {
+        padding: 20px 0;
+    }
 }
