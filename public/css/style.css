@@ -15,10 +15,11 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    width: 100vw;
 }
 
 body.scrolled #photo-container {
-    filter: blur(4px) brightness(0.6);
+    filter: blur(6px) brightness(0.4);
 }
 
 h1, h2 {
@@ -37,7 +38,7 @@ h1, h2 {
     background-size: cover;
     background-position: center;
     z-index: -2;
-    transition: filter 0.8s ease;
+    transition: filter 0.8s ease, transform 0.8s ease;
 }
 
 .overlay {
@@ -53,16 +54,16 @@ h1, h2 {
 }
 
 body.scrolled .overlay {
-    opacity: 1;
+    opacity: 0.7;
 }
 
 /* Contenido centrado */
 .centered-content {
-    width: 100%;
+    width: 90vw;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 5vw;
 }
 
 /* Sección principal */
@@ -78,13 +79,14 @@ body.scrolled .overlay {
     color: var(--text-light);
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
 .invitation-text {
     font-size: 1.2rem;
     line-height: 1.8;
     margin-bottom: 2rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 /* Countdown */
@@ -199,20 +201,25 @@ body.scrolled .overlay {
 
 /* Responsive */
 @media (max-width: 768px) {
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
     .location-section {
         flex-direction: column;
-        padding: 20% 5%;
+        padding: 25% 5%;
     }
     
     .location-image {
         width: 100%;
         margin-right: 0;
         margin-bottom: 30px;
-        min-height: 300px;
+        min-height: 250px;
     }
     
     .announcement h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     #countdown-timer {
@@ -231,5 +238,16 @@ body.scrolled .overlay {
     
     .location-info {
         padding: 20px 0;
+    }
+}
+
+/* Corrección específica para iOS */
+@supports (-webkit-touch-callout: none) {
+    body {
+        height: -webkit-fill-available;
+    }
+    
+    #photo-container {
+        height: -webkit-fill-available;
     }
 }

@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Elementos del DOM
     const body = document.body;
     const photo = document.getElementById('photo-container');
+    const overlay = document.querySelector('.overlay');
     const announcement = document.querySelector('.announcement');
     const countdown = document.querySelector('.countdown');
     const rsvp = document.querySelector('.rsvp');
@@ -12,39 +13,53 @@ document.addEventListener('DOMContentLoaded', function() {
     const secondsElement = document.getElementById('seconds');
 
     // =============================================
-    // 1. EFECTO DE SCROLL (DIFUMINADO PROGRESIVO)
+    // 1. EFECTO DE SCROLL OPTIMIZADO PARA MÓVIL
     // =============================================
+    let lastScrollY = 0;
+    let ticking = false;
+    
     window.addEventListener('scroll', function() {
-        const scrollY = window.scrollY;
+        lastScrollY = window.scrollY;
         
-        // Activar difuminado después de 100px de scroll
-        if (scrollY > 100) {
-            body.classList.add('scrolled');
-        } else {
-            body.classList.remove('scrolled');
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateScrollEffects(lastScrollY);
+                ticking = false;
+            });
+            ticking = true;
         }
-
-        // Mostrar elementos al hacer scroll
-        if (scrollY > 50) {
-            announcement.classList.add('visible');
-        }
-        if (scrollY > 150) {
-            countdown.classList.add('visible');
-        }
-        if (scrollY > 250) {
-            rsvp.classList.add('visible');
-        }
-
-        // Mostrar secciones de ubicación
-        locationSections.forEach((section, index) => {
-            const sectionTop = section.offsetTop;
-            const triggerPoint = window.innerHeight * 0.7;
-            
-            if (scrollY > sectionTop - triggerPoint) {
-                section.classList.add('visible');
-            }
-        });
     });
+
+    function updateScrollEffects(scrollY) {
+        const windowHeight = window.innerHeight;
+        
+        // Efecto de difuminado progresivo (más intenso en móvil)
+        const blurIntensity = Math.min(scrollY / 50, 6);
+        const brightnessLevel = Math.max(1 - scrollY / 200, 0.3);
+        
+        photo.style.filter = `blur(${blurIntensity}px) brightness(${brightnessLevel})`;
+        photo.style.transform = `scale(${1 + scrollY / 5000})`;
+        
+        // Control preciso del overlay
+        overlay.style.opacity = Math.min(scrollY / 200, 0.7);
+        
+        // Mostrar elementos con umbrales adaptativos
+        const thresholds = {
+            announcement: 50,
+            countdown: windowHeight * 0.3,
+            rsvp: windowHeight * 0.5
+        };
+        
+        announcement.classList.toggle('visible', scrollY > thresholds.announcement);
+        countdown.classList.toggle('visible', scrollY > thresholds.countdown);
+        rsvp.classList.toggle('visible', scrollY > thresholds.rsvp);
+        
+        // Secciones de ubicación
+        locationSections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            section.classList.toggle('visible', sectionTop < windowHeight * 0.75);
+        });
+    }
 
     // =============================================
     // 2. CUENTA REGRESIVA
@@ -81,8 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // Forzar mostrar elementos si el scroll ya está avanzado
     setTimeout(() => {
-        if (window.scrollY > 50) announcement.classList.add('visible');
-        if (window.scrollY > 150) countdown.classList.add('visible');
-        if (window.scrollY > 250) rsvp.classList.add('visible');
-    }, 500);
+        updateScrollEffects(window.scrollY);
+    }, 100);
 });
